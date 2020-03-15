@@ -1,7 +1,11 @@
 <?php
 session_start();
+
+//логин вводимый пользователем
+$login_input = $_POST['login'];
+
 if(!isset($_SESSION['name'])){
-    $_SESSION['name'] = $users;
+    $_SESSION['name'] = $login_input;
 }
 
 
@@ -20,8 +24,7 @@ $users = [
 
 ];
 
-//логин вводимый пользователем
-$login_input = $_POST['login'];
+
 
 //пароль вводимый пользователем
 $password_input = $_POST['password'];
@@ -90,7 +93,11 @@ foreach($users as $base_key => $base_value){
 if($error == 0)
     echo '<strong style="color:red">Внимание! Такого пользователя нет в базе!<br/></strong>';
 
+
+
 echo $_SESSION['name'];
+
+
 ?>
 
 <h1 style="display: flex;align-items: center;justify-content: center  ";>Главная  </h1>
