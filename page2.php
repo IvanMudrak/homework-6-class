@@ -35,24 +35,24 @@ $lang = '';
 //выбирает язык приветствия
 foreach($users as $base_key => $base_value){
 
-if($login_input == $base_value['login']) {
+    if($login_input == $base_value['login']) {
 
-    if ($base_value['lang'] == 'ru') {
-        $lang = 'Здравствуйте! ';
-        break;
-    } elseif ($base_value['lang'] == 'en') {
-        $lang = 'Hello! ';
-        break;
-    } elseif ($base_value['lang'] == 'ua') {
-        $lang = 'Добридень! ';
-        break;
-    } elseif ($base_value['lang'] == 'it') {
-        $lang = 'Ciao! ';
-        break;
-    }else{
-        $lang = 'Язык пользователя не выбран, выберите: <br/><br/>';
+        if ($base_value['lang'] == 'ru') {
+            $lang = 'Здравствуйте! ';
+            break;
+        } elseif ($base_value['lang'] == 'en') {
+            $lang = 'Hello! ';
+            break;
+        } elseif ($base_value['lang'] == 'ua') {
+            $lang = 'Добридень! ';
+            break;
+        } elseif ($base_value['lang'] == 'it') {
+            $lang = 'Ciao! ';
+            break;
+        }else{
+            $lang = 'Язык пользователя не выбран, выберите: <br/><br/>';
+        }
     }
-}
 
 }
 
@@ -93,7 +93,8 @@ if($error == 0)
 echo $_SESSION['name'];
 ?>
 
-<h1 style="display: flex;align-items: center;justify-content: center  ";>Главная  </h1>
+
+<h1 style="display: flex;align-items: center;justify-content: center  ";>page 2  </h1>
 
 <div style=" margin: auto; border: 1px solid red; width:250px; height:150px; display: flex;align-items: center;justify-content: center ">
     <form method="post">
@@ -113,4 +114,5 @@ echo $_SESSION['name'];
     </form>
 </div>
 
-<a href="page2.php">переход на вторую страницу</a>
+<a href="page3.php">переход на третью  страницу</a><br/>
+<a href="index.php">на главную</a>
