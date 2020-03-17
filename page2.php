@@ -1,118 +1,85 @@
 <?php
+// открываем сессию
 session_start();
-if(!isset($_SESSION['name'])){
-    $_SESSION['name'] = $users;
-}
+// данные были отправлены формой?
+if($_POST['send']){
+
+    $users = [
+
+        ['login' => 'Vasisualiy', 'password' => '12345', 'lang' => 'ru'],
+
+        ['login' => 'Afanasiy', 'password' => '54321', 'lang' => 'en'],
+
+        ['login' => 'Petro', 'password' => 'EkUC42nzmu', 'lang' => 'ua'],
+
+        ['login' => 'Pedrolus', 'password' => 'Cogito_ergo_sum', 'lang' => 'it'],
+
+        ['login' => 'Sasha', 'password' => 'Ignorantia_non_excusat ' ], // добавить сюда!!!!!!!!!!
+
+    ];
 
 
-
-$users = [
-
-    ['login' => 'Vasisualiy', 'password' => '12345', 'lang' => 'ru'],
-
-    ['login' => 'Afanasiy', 'password' => '54321', 'lang' => 'en'],
-
-    ['login' => 'Petro', 'password' => 'EkUC42nzmu', 'lang' => 'ua'],
-
-    ['login' => 'Pedrolus', 'password' => 'Cogito_ergo_sum', 'lang' => 'it'],
-
-    ['login' => 'Sasha', 'password' => 'Ignorantia_non_excusat ' ], // добавить сюда!!!!!!!!!!
-
-];
-
-//логин вводимый пользователем
-$login_input = $_POST['login'];
-
-//пароль вводимый пользователем
-$password_input = $_POST['password'];
-
-//переменная оповещает о незарегистрированом пользователе
-$error = 0;
 
 //переменная для выбора языка приветствия
-$lang = '';
+    $_SESSION['language'] = '';
 
 //выбирает язык приветствия
-foreach($users as $base_key => $base_value){
+    foreach($users as $base_key => $base_value){
 
-    if($login_input == $base_value['login']) {
+        if($_POST['login'] == $base_value['login']) {
 
-        if ($base_value['lang'] == 'ru') {
-            $lang = 'Здравствуйте! ';
-            break;
-        } elseif ($base_value['lang'] == 'en') {
-            $lang = 'Hello! ';
-            break;
-        } elseif ($base_value['lang'] == 'ua') {
-            $lang = 'Добридень! ';
-            break;
-        } elseif ($base_value['lang'] == 'it') {
-            $lang = 'Ciao! ';
-            break;
-        }else{
-            $lang = 'Язык пользователя не выбран, выберите: <br/><br/>';
+            if ($base_value['lang'] == 'ru') {
+                $_SESSION['language'] = 'Здравствуйте! ';
+                break;
+            } elseif ($base_value['lang'] == 'en') {
+                $_SESSION['language'] = 'Hello! ';
+                break;
+            } elseif ($base_value['lang'] == 'ua') {
+                $_SESSION['language'] = 'Добридень! ';
+                break;
+            } elseif ($base_value['lang'] == 'it') {
+                $_SESSION['language'] = 'Ciao! ';
+                break;
+            }else{
+                $_SESSION['language'] = 'Язык пользователя не выбран, выберите: <br/><br/>';
+            }
         }
+
     }
 
-}
-
-echo'<br/>';
 
 
-//Смотрим всех зарегистрированых пользователей
-foreach($users as $base_key => $base_value){
-    echo '<br/>';
-    foreach($base_value as $key => $value){
-        echo $value.' ';
-    }
-}
+    // фильтрует незарегистрированных пользователей
+    foreach($users as $base_key => $base_value){
+        foreach($base_value as $key => $value){
 
-echo'<br/>';
+            //если логин совпадает
+            if($value == $_POST['login']){
+                foreach($base_value as $key => $value){
 
-//Условие приветствия , фильтрует незарегистрированных пользователей
-foreach($users as $base_key => $base_value){
-    echo '<br/>';
-    foreach($base_value as $key => $value){
-
-        //если логин совпадает
-        if($value == $login_input){
-            foreach($base_value as $key => $value){
-
-                //проверяю совпадает ли пароль
-                if($value == $password_input ){
-                    echo '<strong style="color:#1a1fdc">' .$lang.$login_input.'</strong><br/>';
-                    $error = 1;
+                    //проверяю совпадает ли пароль
+                    if($value == $_POST['password']){
+                        $_SESSION['logged_user'] = $_POST['login'];
+                        header("Location: page3.php");
+                        exit;
+                    }
                 }
             }
         }
     }
-}
-if($error == 0)
-    echo '<strong style="color:red">Внимание! Такого пользователя нет в базе!<br/></strong>';
 
-echo $_SESSION['name'];
+
+
+}
+
+
+
+
+
+
 ?>
 
-
-<h1 style="display: flex;align-items: center;justify-content: center  ";>page 2  </h1>
-
-<div style=" margin: auto; border: 1px solid red; width:250px; height:150px; display: flex;align-items: center;justify-content: center ">
-    <form method="post">
-        <table>
-            <tr>
-                <td><label >Логин</label></td>
-                <td><input type="" name="login"></td>
-            </tr>
-            <tr>
-                <td><label >Пароль</label></td>
-                <td><input  type="" name="password"></td>
-            </tr>
-            <tr>
-                <td colspan="2" style="text-align: center"><input type="submit" value="Войти"></td>
-            </tr>
-        </table>
-    </form>
-</div>
-
-<a href="page3.php">переход на третью  страницу</a><br/>
-<a href="index.php">на главную</a>
+<html><body>
+<p style="font-size: 50px; color: red;">Вы ввели неверный пароль или логин!</p>
+<a href="index.php"><br/>на главную</a>
+</body></html>
