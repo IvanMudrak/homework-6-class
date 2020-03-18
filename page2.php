@@ -41,7 +41,7 @@ if($_POST['send']){
                 $_SESSION['language'] = 'Ciao! ';
                 break;
             }else{
-                $_SESSION['language'] = 'Язык пользователя не выбран, выберите: <br/><br/>';
+                $_SESSION['language'] = 'Язык пользователя не выбран <br/><br/>';
             }
         }
 
