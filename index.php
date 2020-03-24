@@ -1,31 +1,13 @@
 <?php
 
-// массив зарегистрированных пользователей
-$users = [
-
-    ['login' => 'Vasisualiy', 'password' => '12345', 'lang' => 'ru'],
-
-    ['login' => 'Afanasiy', 'password' => '54321', 'lang' => 'en'],
-
-    ['login' => 'Petro', 'password' => 'EkUC42nzmu', 'lang' => 'ua'],
-
-    ['login' => 'Pedrolus', 'password' => 'Cogito_ergo_sum', 'lang' => 'it'],
-
-    ['login' => 'Sasha', 'password' => 'Ignorantia_non_excusat ' ], // добавить сюда!!!!!!!!!!
-
-];
-
-//выводим на экран  всех зарегистрированых пользователей ( для удобства ввода )
-foreach($users as $base_key => $base_value){
-    echo '<br/>';
-    foreach($base_value as $key => $value){
-        echo $value.' ';
-    }
-}
+include 'ArrayWatch.php';
+//Выводит массива, для удобства ввода паролей
+$array = new UsersWatch();
+echo $array ->watch();
 
 ?>
 
-//Форма ввода
+
 <div style=" margin: auto; border: 1px solid red; width:250px; height:150px; display: flex;align-items: center;justify-content: center; margin-top: 250px; ">
 
     <form action="page2.php" method="post">

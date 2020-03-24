@@ -1,10 +1,14 @@
 <?php
 // открываем сессию
 session_start();
+include 'Array.php';
 // данные были отправлены формой?
 if($_POST['send']){
 
-    $users = [
+    $arraypage2 = new Users();
+    echo $arraypage2 ->users;
+
+    /*$users = [
 
         ['login' => 'Vasisualiy', 'password' => '12345', 'lang' => 'ru'],
 
@@ -16,7 +20,7 @@ if($_POST['send']){
 
         ['login' => 'Sasha', 'password' => 'Ignorantia_non_excusat ' ], // добавить сюда!!!!!!!!!!
 
-    ];
+    ];*/
 
 
 
@@ -24,7 +28,7 @@ if($_POST['send']){
     $_SESSION['language'] = '';
 
 //выбирает язык приветствия
-    foreach($users as $base_key => $base_value){
+    foreach($arraypage2 as $base_key => $base_value){
 
         if($_POST['login'] == $base_value['login']) {
 
@@ -50,7 +54,7 @@ if($_POST['send']){
 
 
     // фильтрует незарегистрированных пользователей
-    foreach($users as $base_key => $base_value){
+    foreach($arraypage2 as $base_key => $base_value){
         foreach($base_value as $key => $value){
 
             //если логин совпадает

@@ -12,7 +12,9 @@ session_start();
 <html>
 <body>
 <p style="font-size: 45px; color: green">
-<?php if($_SESSION['language'] == 'Язык пользователя не выбран <br/><br/>'){
+<?php
+
+if($_SESSION['language'] == 'Язык пользователя не выбран <br/><br/>'){
         echo 'Язык пользователя не выбран, сделайте свой выбор';
 
     if ($_POST['ru']== 'ru') {
