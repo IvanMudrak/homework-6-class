@@ -17,26 +17,20 @@ class UsersVerification{
     ];
 
     public function Verification(){
-// фильтрует незарегистрированных пользователей
-        foreach ($this->users as $base_key => $base_value) {
-            foreach ($base_value as $key => $value) {
 
-                //если логин совпадает
-                if ($value == $_POST['login']) {
-                    foreach ($base_value as $key => $value) {
-
-                        //проверяю совпадает ли пароль
-                        if ($value == $_POST['password']) {
-                            $_SESSION['logged_user'] = $_POST['login'];
-                            header("Location: page3.php");
-                            exit;
-                        }
-                    }
-                }
+    // фильтрует незарегистрированных пользователей
+        foreach ($this -> users as $value) {
+            if ($value['login'] == $_POST['login'] && $value['password'] == $_POST['password']) {
+                $_SESSION['logged_user'] = $_POST['login'];
+                header("Location: page3.php");
+                exit;
             }
         }
 
     }
+
+
+
 
 
 }
