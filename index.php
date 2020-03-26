@@ -1,12 +1,13 @@
 <?php
-
 include 'ArrayWatch.php';
-//Выводит массива, для удобства ввода паролей
+
+//Создание объекта массива пользователей
 $array = new UsersWatch();
+
+//Выводит массива (для удобства ввода паролей)
 echo $array ->watch();
 
 ?>
-
 
 <div style=" margin: auto; border: 1px solid red; width:250px; height:150px; display: flex;align-items: center;justify-content: center; margin-top: 250px; ">
 

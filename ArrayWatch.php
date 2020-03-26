@@ -16,8 +16,6 @@ class UsersWatch{
 
     ];
 
-
-
     public function watch(){
 
         foreach($this -> users as $base_key => $base_value){
